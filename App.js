@@ -1,13 +1,15 @@
-import React from 'react';
+import React from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import PaymentPage from './Screens/Payment_page';
 
 export default function App() {
-  let x=1;
   
   return (
     <View style={styles.container}>
-      <Text>Hello world</Text>
+      <View>
+        <PaymentPage/>
+      </View>
       <StatusBar style="auto" />
     </View>
   );
