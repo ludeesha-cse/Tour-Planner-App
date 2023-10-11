@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
-function PaymentPage() {
+function PaymentScreen({navigation}) {
   const [cardNumber, setCardNumber] = useState('');
   const [cardName, setCardName] = useState('');
   const [expiry, setExpiry] = useState('');
@@ -12,8 +12,14 @@ function PaymentPage() {
     alert('Payment Successful!');
   };
 
+  
+
   return (
     <View style={styles.container}>
+      <Button
+        title="Home Screen"
+        onPress={() => navigation.navigate('HomeScreen')}
+      />
       <View style={styles.paymentCard}>
         <Text style={styles.header}>Card Payment</Text>
         <TextInput
@@ -101,4 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PaymentPage;
+export default PaymentScreen;
