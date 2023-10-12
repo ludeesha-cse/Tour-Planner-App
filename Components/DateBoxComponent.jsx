@@ -1,49 +1,40 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 
 export default function DateBoxComponent(props) {
-  const [date, setDate] = useState(new Date());
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('');
 
-  const handleDateChange = (event, selectedDate) => {
-    setShowDatePicker(Platform.OS === 'ios');
-    if (selectedDate) {
-      setDate(selectedDate);
-      props.onDateChange(selectedDate);
-    }
-  };
-
-  const showDatepicker = () => {
-    setShowDatePicker(true);
+  // Callback function to pass the selected date to the parent
+  const handleDateChange = (text) => {
+    setSelectedDate(text);
+    props.onDateChange(text); // Call the parent's callback function
   };
 
   return (
     <View style={styles.grp}>
       <Text style={styles.titleH}>{props.text}</Text>
-      <View>
-        <Text onPress={showDatepicker} style={styles.dateText}>
-          {date.toDateString()}
-        </Text>
-        {showDatePicker && (
-          <DateTimePicker
-            value={date}
-            mode="date"
-            display="default"
-            onChange={handleDateChange}
-          />
-        )}
-      </View>
+      <TextInput
+        style={styles.box}
+        placeholder="Select a date"
+        value={selectedDate}
+        onChangeText={handleDateChange}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  dateText: {
-    fontSize: 18,
-    borderBottomWidth: 1,
-    borderColor: 'gray',
-    padding: 5,
+  box: {
+    height: 58,
+    alignSelf: 'center',
+    textAlign: 'center',
+    width: '60%',
+    margin: 'auto',
+    borderWidth: 2,
+    borderColor: '#000000',
+    color: 'rgb(145, 145, 145)',
+    borderRadius: 20,
+    backgroundColor: '#E7E5DF',
   },
   grp: {
     textAlign: 'center',
