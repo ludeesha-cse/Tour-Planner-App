@@ -26,7 +26,7 @@ const LandingScreen = ({navigation}) => {
             {"|NAVIGATE THE WORLD'S MARVELOUS."}
           </Text>
           <View style={styles.getStartedButton}>
-            <Button title="Get Started" onPress={() => navigation.navigate('PaymentScreen')} />
+            <Button title="Get Started" onPress={() => navigation.navigate('DestinationFormScreen')} />
           </View>
         </View>
         <View style={styles.abouts}>
