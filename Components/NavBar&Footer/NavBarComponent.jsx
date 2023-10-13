@@ -32,7 +32,7 @@ const NavBarComponent = ({ items }) => {
       
       <Modal
         style={styles.menu_modal}
-        animationType="slide" // You can choose other animation types as well
+        animationType="fade" // You can choose other animation types as well
         transparent={true}
         visible={isMenuVisible}
         onRequestClose={toggleMenu} // Handle close on overlay click
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     
   },
   menuModal: {
-    marginTop:30,
+    marginTop:65,
     marginLeft:'70%',
     width:'30%',
     justifyContent: 'center',
