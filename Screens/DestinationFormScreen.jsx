@@ -1,22 +1,12 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import NavBarComponent from '../Components/NavBar&Footer/NavBarComponent';
 import DestinationButtons from '../Components/DestinationPageComponent';
 
 
 function DestinationForm({navigation}) {
-  const navbarItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'About Us', href: '#about_us' },
-    { label: 'Contact Us', href: '#contact_us' },
-  ];
 
   return (
     <View style={styles.container}>
-      <View style={styles.navBar}>
-        <NavBarComponent items={navbarItems} />
-      </View>
-
       <View style={styles.destinationButtons}>
         <DestinationButtons />
       </View>

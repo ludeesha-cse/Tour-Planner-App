@@ -2,23 +2,14 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import LocationBtnComponent from './LocationButton';
 import DateBoxComponent from './DateBoxComponent';
-import PriceRangeComponent from './PriceRangeComponent';  
-// import { Slider } from "@miblanchard/react-native-slider";
-import Slider from '@react-native-community/slider';
 import { ScrollView } from 'react-native-gesture-handler';
-import TwoThumbSlider from './MultiSlider';
-
+import PriceRangeComponent from './MultiSlider';
 
 export default function DestinationButtons() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [location, setLocation] = useState('');
   const [priceRange, setPriceRange] = useState('');
-
-  //////////////////////////////////////////////////////////
-  
-
-  //////////////////////////////////////////////////////////
 
   const destinationData = {
     startDate: startDate,
@@ -37,7 +28,7 @@ export default function DestinationButtons() {
   const handleLocationChange = (selectedLocation) => {
     setLocation(selectedLocation);
   };
-
+  ///////////////////////////////////////////////////////////////////
   const handlePriceChange = (selectedPrice) => {
     setPriceRange(selectedPrice);
   };
@@ -62,45 +53,11 @@ export default function DestinationButtons() {
         <View>
             <LocationBtnComponent onLocationChange={handleLocationChange} />
         </View>
-
       </View>
-      {/* <View>
-        <PriceRangeComponent onPriceChange={(values) => handlePriceChange(values)} />
-
-
-      </View> */}
-{/* 
-      <SliderContainer
-        caption="<Slider/> 2 thumbs, min, max, and custom tint"
-        sliderValue={[6, 18]}>
-        <Slider
-          animateTransitions
-          maximumTrackTintColor="#d3d3d3"
-          maximumValue={20}
-          minimumTrackTintColor="#1fb28a"
-          minimumValue={4}
-          step={2}
-          thumbTintColor="#1a9274"
-        />
-      </SliderContainer> */}
-
-      {/* ///////////////////////////////////////////// */}
-
-      {/* <View>
-      <Slider
-        style={{width: 200, height: 40}}
-        minimumValue={0}
-        maximumValue={1}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#000000"
-      /> 
-      </View> */}
-      {/* ///////////////////////////////////////////////////////////// */}
 
       <View>
-        <TwoThumbSlider />
+        <PriceRangeComponent />
       </View>
-
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.exploreButton} onPress={onClick}>

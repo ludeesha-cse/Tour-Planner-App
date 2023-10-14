@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Modal, Button } from 'react-native';
 
-const NavBarComponent = ({ items }) => {
+const NavBarComponent = ({ navigation}) => {
+  
+  const navbarItems = [
+    {label: 'Home', href: '#home'},
+    {label: 'About Us', href: '#about_us'},
+    {label: 'Contact Us', href: '#contact_us'}
+  ];
+
   const [isMenuVisible, setMenuVisible] = useState(false);
 
   const toggleMenu = () => {
@@ -19,10 +26,14 @@ const NavBarComponent = ({ items }) => {
         <View>
           
         </View>
-        <Image
-          source={require('../../images/journeysync-high-resolution-logo-black-on-transparent-background.png')}
-          style={styles.logoImage}
-        />
+        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+          <Image
+            source={require('../../images/journeysync-high-resolution-logo-black-on-transparent-background.png')}
+            style={styles.logoImage}
+            
+          />
+        </TouchableOpacity>
+        
         <View style={styles.menuContainer}>
           <TouchableOpacity onPress={toggleMenu} style={styles.menuIcon}>
             <Image style={styles.menuLogo} source={require('../../images/icons8-menu-50.png')} />
@@ -32,26 +43,35 @@ const NavBarComponent = ({ items }) => {
       
       <Modal
         style={styles.menu_modal}
-        animationType="slide" // You can choose other animation types as well
+        animationType="fade" // You can choose other animation types as well
         transparent={true}
         visible={isMenuVisible}
         onRequestClose={toggleMenu} // Handle close on overlay click
 
       >
         <View style={styles.menuModal}>
-          <View>
-            {items.map((item) => (
+          <Button
+            title="Home"
+            onPress={() => navigation.navigate('HomeScreen')}
+          />
+          <Button
+            title="About Us"
+            onPress={() => navigation.navigate('HomeScreen')}
+          />
+
+          {/* <View>
+            {navbarItems.map((items) => (
               <View>
                 <Button
-                
-                title={item.label}
+                key={items.id}
+                title={items.label}
                 onPress={() => {
                   // Handle navigation or other actions here
                 }}
               />
               </View>
             ))}
-          </View>
+          </View> */}
           <Button
             title="Close"
             onPress={toggleMenu}
@@ -99,7 +119,7 @@ const styles = StyleSheet.create({
     
   },
   menuModal: {
-    marginTop:30,
+    marginTop:65,
     marginLeft:'70%',
     width:'30%',
     justifyContent: 'center',

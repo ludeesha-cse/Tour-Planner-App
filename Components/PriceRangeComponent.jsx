@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import Slider from '@react-native-community/slider';
 
-const PriceRangeComponent = (props) => {
+const PriceRangeComponent2 = (props) => {
   const [minValue, setMinValue] = useState(10000);
   const [maxValue, setMaxValue] = useState(100000);
 
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PriceRangeComponent;
+export default PriceRangeComponent2;
