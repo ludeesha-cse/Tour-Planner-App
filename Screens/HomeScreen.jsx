@@ -1,25 +1,15 @@
 import React from 'react';
 import { View, Text, ImageBackground, StyleSheet, ScrollView, Button } from 'react-native';
-import NavBar from '../Components/NavBar&Footer/NavBarComponent';
 import AboutUs from '../Components/AboutUsComponent';
 
 
 const LandingScreen = ({navigation}) => {
-  const navbarItems = [
-    {label: 'Home', href: '#home'},
-    {label: 'About Us', href: '#about_us'},
-    {label: 'Contact Us', href: '#contact_us'}
-  ];
   return (
     <ScrollView>
       <ImageBackground
     source={require('../images/portrait/landing_background_portrait.jpg')}
     style={styles.backgroundImage}
     >
-      <View style={styles.navbarCustom}>
-        <NavBar items={navbarItems} navigation={navigation}/>
-      </View>
-    
       <View style={styles.container}>
 
         <View style={styles.welcomeNote}>
@@ -78,13 +68,13 @@ const styles = StyleSheet.create({
   welcomeNote: {
     padding: 20,
     position: 'relative',
-    backgroundColor: 'rgba(0, 0, 0, 0)', // Red background with 50% transparency
+    backgroundColor: 'rgba(0, 0, 0, 0)', 
     width: '100%',
   },
   welcomeText: {
-    marginTop: 200,
+    marginTop: 50,
     marginBottom: 50,
-    width: '85%',
+    width: '90%',
     letterSpacing: 5,
     fontWeight: 'bold',
     fontSize: 40,

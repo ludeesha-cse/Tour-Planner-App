@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Modal, Button } from 'react-native';
 
-const NavBarComponent = ({items , navigation}) => {
+const NavBarComponent = ({ navigation}) => {
+  
+  const navbarItems = [
+    {label: 'Home', href: '#home'},
+    {label: 'About Us', href: '#about_us'},
+    {label: 'Contact Us', href: '#contact_us'}
+  ];
+
   const [isMenuVisible, setMenuVisible] = useState(false);
 
   const toggleMenu = () => {
@@ -43,8 +50,17 @@ const NavBarComponent = ({items , navigation}) => {
 
       >
         <View style={styles.menuModal}>
-          <View>
-            {items.map((items) => (
+          <Button
+            title="Home"
+            onPress={() => navigation.navigate('HomeScreen')}
+          />
+          <Button
+            title="About Us"
+            onPress={() => navigation.navigate('HomeScreen')}
+          />
+
+          {/* <View>
+            {navbarItems.map((items) => (
               <View>
                 <Button
                 key={items.id}
@@ -55,7 +71,7 @@ const NavBarComponent = ({items , navigation}) => {
               />
               </View>
             ))}
-          </View>
+          </View> */}
           <Button
             title="Close"
             onPress={toggleMenu}
