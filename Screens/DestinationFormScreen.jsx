@@ -14,7 +14,7 @@ function DestinationForm({navigation}) {
   return (
     <View style={styles.container}>
       <View style={styles.navBar}>
-        <NavBarComponent items={navbarItems} />
+        <NavBarComponent items={navbarItems} navigation={navigation} />
       </View>
 
       <View style={styles.destinationButtons}>

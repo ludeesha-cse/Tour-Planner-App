@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, ImageBackground, StyleSheet, ScrollView, Button } from 'react-native';
 import NavBar from '../Components/NavBar&Footer/NavBarComponent';
+import AboutUs from '../Components/AboutUsComponent';
 
 
 const LandingScreen = ({navigation}) => {
@@ -16,7 +17,7 @@ const LandingScreen = ({navigation}) => {
     style={styles.backgroundImage}
     >
       <View style={styles.navbarCustom}>
-        <NavBar items={navbarItems} />
+        <NavBar items={navbarItems} navigation={navigation}/>
       </View>
     
       <View style={styles.container}>
@@ -48,9 +49,14 @@ const LandingScreen = ({navigation}) => {
           </Text>
         </ScrollView>
         </View>
-        
       </View>
+      <View>
+      <AboutUs />
+      </View>
+        
+      {/* <View  id="about_us" style={styles.about_us}><AboutUs /></View> */}
     </ImageBackground>
+    
     </ScrollView>
 
     
@@ -91,6 +97,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     letterSpacing: 5,
     color: 'white',
+    maxWidth:200,
   },
   paragraphs: {
     marginTop: 200,

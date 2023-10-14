@@ -12,13 +12,11 @@ function PaymentScreen({navigation}) {
     alert('Payment Successful!');
   };
 
-  
-
   return (
     <View style={styles.container}>
       <Button
         title="Home Screen"
-        onPress={() => navigation.navigate('HomeScreen')}
+        onPress={() =>navigation.navigate('HomeScreen')}
       />
       <View style={styles.paymentCard}>
         <Text style={styles.header}>Card Payment</Text>

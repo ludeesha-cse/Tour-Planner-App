@@ -33,13 +33,14 @@ export default function LocationBtnComponent(props) {
             style={styles.input}
             value={value}
             onChangeText={onChange}
+            placeholder='Search for a town...'
           />
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.searchBtn}
             onPress={() => props.onSearch(value)}
           >
             <Text>Search</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         {searchResults.map((item, index) => (
           <TouchableOpacity
@@ -96,9 +97,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 10,
   },
-  input: {
-    width: '60%',
+  // This code makes the text in the TextInput centered, with no border.
+
+input: {
+    width: '90%',
     color: 'black',
     borderWidth: 0, // Remove the border
+    textAlign: 'center',
   },
 });

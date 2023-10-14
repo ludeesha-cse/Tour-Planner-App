@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Modal, Button } from 'react-native';
 
-const NavBarComponent = ({ items }) => {
+const NavBarComponent = ({items , navigation}) => {
   const [isMenuVisible, setMenuVisible] = useState(false);
 
   const toggleMenu = () => {
@@ -19,10 +19,14 @@ const NavBarComponent = ({ items }) => {
         <View>
           
         </View>
-        <Image
-          source={require('../../images/journeysync-high-resolution-logo-black-on-transparent-background.png')}
-          style={styles.logoImage}
-        />
+        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+          <Image
+            source={require('../../images/journeysync-high-resolution-logo-black-on-transparent-background.png')}
+            style={styles.logoImage}
+            
+          />
+        </TouchableOpacity>
+        
         <View style={styles.menuContainer}>
           <TouchableOpacity onPress={toggleMenu} style={styles.menuIcon}>
             <Image style={styles.menuLogo} source={require('../../images/icons8-menu-50.png')} />
@@ -40,11 +44,11 @@ const NavBarComponent = ({ items }) => {
       >
         <View style={styles.menuModal}>
           <View>
-            {items.map((item) => (
+            {items.map((items) => (
               <View>
                 <Button
-                
-                title={item.label}
+                key={items.id}
+                title={items.label}
                 onPress={() => {
                   // Handle navigation or other actions here
                 }}
