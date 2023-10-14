@@ -167,7 +167,6 @@ export default function AboutUs() {
 
 const styles = {
   abouUsSliderHeader:{
-    fontFamily: 'Segoe UI',
     fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'center',
