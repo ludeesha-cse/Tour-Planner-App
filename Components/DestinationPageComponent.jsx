@@ -4,6 +4,8 @@ import LocationBtnComponent from './LocationButton';
 import DateBoxComponent from './DateBoxComponent';
 import { ScrollView } from 'react-native-gesture-handler';
 import PriceRangeComponent from './MultiSlider';
+import DatePickerComponent from './DatePickerComponent';
+import { Button } from 'react-native';
 
 export default function DestinationButtons() {
   const [startDate, setStartDate] = useState('');
@@ -33,6 +35,16 @@ export default function DestinationButtons() {
     setPriceRange(selectedPrice);
   };
 
+  function onDatePress(){
+    <View>
+      <Text>
+      <DatePickerComponent />
+      </Text>
+      
+    </View>
+    
+  };
+
   const onClick = () => {
     console.log(startDate);
     console.log(endDate);
@@ -47,9 +59,16 @@ export default function DestinationButtons() {
         <View style={styles.date_btn}>
             <DateBoxComponent text="Starting Date" onDateChange={handleStartDateChange} />
         </View>
-        <View style={styles.date_btn} >
-            <DateBoxComponent text="End Date" onDateChange={handleEndDateChange} />
+        
+        <View style={styles.date_btn}>
+            <Button title='Date' onPress={onDatePress} />
         </View>
+        {/* <View style={styles.date_btn}>
+            <DatePickerComponent />
+        </View> */}
+        {/* <View style={styles.date_btn} >
+            <DateBoxComponent text="End Date" onDateChange={handleEndDateChange} />
+        </View> */}
         <View>
             <LocationBtnComponent onLocationChange={handleLocationChange} />
         </View>
