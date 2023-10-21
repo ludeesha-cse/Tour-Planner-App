@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import LocationBtnComponent from './LocationButton';
-import DateBoxComponent from './DateBoxComponent';
 import { ScrollView } from 'react-native-gesture-handler';
 import PriceRangeComponent from './MultiSlider';
-import DatePickerComponent from './DatePickerComponent';
 import { Button } from 'react-native';
+import {DatePicker} from './DatePicker';
 
 export default function DestinationButtons() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [location, setLocation] = useState('');
-  const [priceRange, setPriceRange] = useState('');
+  //const [priceRange, setPriceRange] = useState([]);
 
   const destinationData = {
     startDate: startDate,
@@ -31,52 +30,40 @@ export default function DestinationButtons() {
     setLocation(selectedLocation);
   };
   ///////////////////////////////////////////////////////////////////
-  const handlePriceChange = (selectedPrice) => {
-    setPriceRange(selectedPrice);
-  };
+  // const handlePriceChange = (selectedPrice) => {
+  //   setPriceRange(selectedPrice);
+  // };
 
-  function onDatePress(){
-    <View>
-      <Text>
-      <DatePickerComponent />
-      </Text>
-      
-    </View>
-    
-  };
+  const isFormValid = startDate && endDate && location && priceRange.length > 0;
 
   const onClick = () => {
-    console.log(startDate);
-    console.log(endDate);
+    if (isFormValid) {
+    console.log("Start Date: "+startDate);
+    console.log("End Date: "+endDate);
     console.log(location);
-    console.log(priceRange);
+    }
+    else {
+      alert('Please fill all the fields');
+    }
   };
 
   return (
     <ScrollView>
     <View style={styles.container}>
       <View style={styles.btn_col}>
-        <View style={styles.date_btn}>
-            <DateBoxComponent text="Starting Date" onDateChange={handleStartDateChange} />
-        </View>
         
         <View style={styles.date_btn}>
-            <Button title='Date' onPress={onDatePress} />
+          <DatePicker onStartDateChange={handleStartDateChange} onEndDateChange={handleEndDateChange}/>  
         </View>
-        {/* <View style={styles.date_btn}>
-            <DatePickerComponent />
-        </View> */}
-        {/* <View style={styles.date_btn} >
-            <DateBoxComponent text="End Date" onDateChange={handleEndDateChange} />
-        </View> */}
+
         <View>
             <LocationBtnComponent onLocationChange={handleLocationChange} />
         </View>
       </View>
 
-      <View>
-        <PriceRangeComponent />
-      </View>
+      {/* <View>
+        <PriceRangeComponent onPriceChange={handlePriceChange}/>
+      </View> */}
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.exploreButton} onPress={onClick}>
@@ -91,7 +78,7 @@ export default function DestinationButtons() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
   },
   row: {
     flexDirection: 'row',
@@ -119,7 +106,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   date_btn: {
+    paddingTop: 40,
     width: '100%',
+    height: 250,
   },
 });
 

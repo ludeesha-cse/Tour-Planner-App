@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Modal, Button } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Modal, Button, TouchableWithoutFeedback} from 'react-native';
 
 const NavBarComponent = ({ navigation}) => {
   
@@ -14,8 +14,13 @@ const NavBarComponent = ({ navigation}) => {
   const toggleMenu = () => {
     setMenuVisible(!isMenuVisible);
   };
-  
-  const closeModal = () => {
+
+  const HandleHomePress = () => {
+    navigation.navigate('HomeScreen');
+    setMenuVisible(false);
+  };
+  const HandleAboutPress = () => {
+    navigation.navigate('HomeScreen');
     setMenuVisible(false);
   };
 
@@ -49,34 +54,22 @@ const NavBarComponent = ({ navigation}) => {
         onRequestClose={toggleMenu} // Handle close on overlay click
 
       >
+        <TouchableWithoutFeedback onPress={toggleMenu}>
         <View style={styles.menuModal}>
           <Button
             title="Home"
-            onPress={() => navigation.navigate('HomeScreen')}
+            onPress={HandleHomePress}
           />
           <Button
             title="About Us"
-            onPress={() => navigation.navigate('HomeScreen')}
+            onPress={HandleAboutPress}
           />
-
-          {/* <View>
-            {navbarItems.map((items) => (
-              <View>
-                <Button
-                key={items.id}
-                title={items.label}
-                onPress={() => {
-                  // Handle navigation or other actions here
-                }}
-              />
-              </View>
-            ))}
-          </View> */}
           <Button
             title="Close"
             onPress={toggleMenu}
           />
         </View>
+        </TouchableWithoutFeedback>
       </Modal>
     </View>
   );
@@ -124,20 +117,15 @@ const styles = StyleSheet.create({
     width:'30%',
     justifyContent: 'center',
     // alignItems: 'flex-end',
-    backgroundColor: 'red', // Background color of the modal
   },
   menuContent: {
     width:'100%',
     flex:1,
-    
-    maxHeight: 300,
+    Height: 500,
     backgroundColor: 'white',
   },
   menu_modal: {
-    
-
     backgroundColor: 'green',
-    
   },
   
 });
