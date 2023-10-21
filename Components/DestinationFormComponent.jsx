@@ -34,7 +34,8 @@ export default function DestinationButtons() {
   //   setPriceRange(selectedPrice);
   // };
 
-  const isFormValid = startDate && endDate && location && priceRange.length > 0;
+  //const isFormValid = startDate && endDate && location && priceRange.length > 0;
+  const isFormValid = startDate && endDate && location > 0;
 
   const onClick = () => {
     if (isFormValid) {
