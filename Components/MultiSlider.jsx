@@ -2,13 +2,15 @@ import React, { useState,useEffect } from 'react';
 import { StyleSheet, View, Text,Dimensions  } from 'react-native';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
-const TwoThumbSlider = () => {
+const TwoThumbSlider = (props) => {
 
-  const [twoWayValue, setTwoWayValue] = useState([10, 90]);
+  const [twoWayValue, setTwoWayValue] = useState([10000, 100000]);
   const [sliderLength, setSliderLength] = useState(0);
 
   const handleTwoWaySliderChange = value => {
     setTwoWayValue(value);
+    props.onPriceChange(twoWayValue);
+    console.log(twoWayValue);
   };
 
   useEffect(() => {
@@ -28,15 +30,16 @@ const TwoThumbSlider = () => {
 
       <View style={styles.sliderInfo}>
         <View >
-            <Text style={styles.sliderValue}>{twoWayValue[0]} LKR</Text>
+            <Text style={styles.sliderValue}>{twoWayValue[0]}</Text>
+            <Text style={styles.sliderValue}>LKR</Text>
         </View>
         <MultiSlider
           values={twoWayValue}
           onValuesChange={handleTwoWaySliderChange}
           sliderLength={Math.min(500,sliderLength)}
-          min={0}
-          max={100}
-          step={1}
+          min={10000}
+          max={100000}
+          step={1000}
           allowOverlap={false}
           snapped={true}
           markerStyle={{ backgroundColor: '#0C356A'}}
@@ -44,7 +47,8 @@ const TwoThumbSlider = () => {
           unselectedStyle={{ backgroundColor: 'silver' }}
         />
         <View>
-          <Text style={styles.sliderValue}>{twoWayValue[1]} LKR</Text>
+          <Text style={styles.sliderValue}>{twoWayValue[1]}</Text>
+          <Text style={styles.sliderValue}>LKR</Text>
         </View>
       </View>
 
@@ -58,7 +62,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
   },
   title: {
     fontSize: 20,
