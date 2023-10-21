@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import LocationBtnComponent from './LocationButton';
 import { ScrollView } from 'react-native-gesture-handler';
-import PriceRangeComponent from './MultiSlider';
-import { Button } from 'react-native';
+// import PriceRangeComponent from './MultiSlider';
+// import { Button } from 'react-native';
 import {DatePicker} from './DatePicker';
 
-export default function DestinationButtons() {
+export default function DestinationButtons({navigation}) {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [location, setLocation] = useState('');
@@ -35,13 +35,14 @@ export default function DestinationButtons() {
   // };
 
   //const isFormValid = startDate && endDate && location && priceRange.length > 0;
-  const isFormValid = startDate && endDate && location > 0;
+  const isFormValid = startDate && endDate && location;
 
   const onClick = () => {
     if (isFormValid) {
     console.log("Start Date: "+startDate);
     console.log("End Date: "+endDate);
     console.log(location);
+    navigation.navigate('Destinations')
     }
     else {
       alert('Please fill all the fields');

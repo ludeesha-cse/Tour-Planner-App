@@ -11,7 +11,7 @@ function DestinationForm({navigation}) {
       source={require('../images/portrait/PortraitBG.jpg')}  >
     <View style={styles.container}>
       <View style={styles.destinationButtons}>
-        <DestinationButtons />
+        <DestinationButtons navigation={navigation}/>
       </View>
     </View>
     </ImageBackground>
