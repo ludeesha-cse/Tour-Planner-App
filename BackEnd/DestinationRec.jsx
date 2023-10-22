@@ -12,7 +12,7 @@ export const DestinationRec = async(loc) => {
     axios.get('https://api.scaleserp.com/search', { params })
     .then(response => {
         console.log(response.data.places_results);
-        return response;
+        return response.data;
     })
     .catch(error => {
         console.log(error);
