@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Modal, Button, TouchableWithoutFeedback} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const NavBarComponent = ({ navigation}) => {
-  
+const NavBarComponent = () => {
+  const navigation = useNavigation();
   const navbarItems = [
     {label: 'Home', href: '#home'},
     {label: 'About Us', href: '#about_us'},

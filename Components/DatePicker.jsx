@@ -57,13 +57,13 @@ export const DatePicker = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.grp}>
-        <Text style={{ textAlign: 'center', fontSize: 18 }}>Start Date</Text>
+        <Text style={{ textAlign: 'center', fontSize: 18 }}>{props.datebox1}</Text>
         <TouchableOpacity onPress={showDatepickerStart} style={styles.TouchBox}>
           <Text style={styles.DateBtnContent}>{BtnDisplayStartDate}</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.grp}>
-        <Text style={{ textAlign: 'center', fontSize: 18 }}>End Date</Text>
+        <Text style={{ textAlign: 'center', fontSize: 18 }}>{props.datebox2}</Text>
         <TouchableOpacity onPress={showDatepickerEnd} style={styles.TouchBox}>
           <Text style={styles.DateBtnContent}>{BtnDisplayEndDate}</Text>
         </TouchableOpacity>

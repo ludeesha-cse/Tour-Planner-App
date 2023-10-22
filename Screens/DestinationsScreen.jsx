@@ -3,8 +3,10 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'rea
 import DestinationCard from '../Components/CardComponent';
 const Pic = require('../images/demodara.jpg');
 import { useNavigation } from '@react-navigation/native';
+import NavBarComponent from '../Components/NavBar&Footer/NavBarComponent';
+import axios from 'axios';
 
-const Destinations = () => {
+const Destinations = (startDate,endDate,loc) => {
   const tags = ['Nature', 'Adventure', 'Hiking'];
   const navigation = useNavigation();
 
@@ -12,9 +14,15 @@ const Destinations = () => {
     // Handle click action
   };
 
-  const handleNextStep = () => {
-    navigation.navigate('AccommodationForm');
+  const navigateToAccomodationForm = () => {
+    navigation.navigate('AccommodationForm',{
+      startDate: startDate,
+      endDate: endDate,
+      loc: loc,
+    });
   };
+
+  //const destinationResults = await getGeoLocation("Tangalle");
 
   const cardComponents = [
     <DestinationCard key={1} id={1} title="Nine Arches Tunnels" location="Demodara" tags={tags} tagLabel="Location tags" image={Pic} onClick={handleClick} />,
@@ -25,12 +33,9 @@ const Destinations = () => {
     <DestinationCard key={6} id={6} title="Nine Arches Tunnels" location="Dodara" tags={tags} tagLabel="Location tags" image={Pic} onClick={handleClick} />,
   ];
 
-  const navbarItems = [
-    { label: 'Home', href: '/' },
-  ];
-
   return (
     <ScrollView style={styles.container}>
+      <NavBarComponent />
       <View style={styles.dst}>
         <View style={styles.dstContainer}>
           <Text style={styles.dstHeading}>Recommended places to visit in Kandy</Text>
@@ -45,7 +50,7 @@ const Destinations = () => {
             ))}
           </View>
           <View style={styles.dstBtn}>
-            <TouchableOpacity style={styles.button} onPress={handleNextStep}>
+            <TouchableOpacity style={styles.button} onPress={navigateToAccomodationForm}>
               <Text>Next Step</Text>
             </TouchableOpacity>
           </View>

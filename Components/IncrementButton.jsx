@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding:'3%',
   },
   incBtnComponent: {
     width: '40%',
@@ -62,19 +63,25 @@ const styles = StyleSheet.create({
   },
   incBtnWithHeader: {
     flexDirection: 'column',
-    justifyContent: 'center',
+    alignSelf: 'center',
     alignItems: 'center',
+    // paddingLeft: 80,
+    
   },
   headerText: {
     width: 120,
+    textAlign: 'center',
   },
   incrBtn: {
     flexDirection: 'row',
     alignItems: 'center',
+    alignSelf: 'center',
     justifyContent: 'center',
     borderWidth: 2,
     borderRadius: 20,
     backgroundColor: '#E7E5DF',
+    width: 120,
+    
   },
   button: {
     width: '20%',
@@ -87,5 +94,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#E7E5DF',
     textAlign: 'center',
+    width: 20,
   },
 });
