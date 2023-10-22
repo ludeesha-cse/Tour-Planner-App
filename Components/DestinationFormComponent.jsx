@@ -5,18 +5,14 @@ import { ScrollView } from 'react-native-gesture-handler';
 // import PriceRangeComponent from './MultiSlider';
 // import { Button } from 'react-native';
 import {DatePicker} from './DatePicker';
+import { useNavigation } from '@react-navigation/native';
 
-export default function DestinationButtons({navigation}) {
+export default function DestinationButtons() {
+  const navigation = useNavigation();
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [location, setLocation] = useState('');
   //const [priceRange, setPriceRange] = useState([]);
-
-  const destinationData = {
-    startDate: startDate,
-    endDate: endDate,
-    location: location,
-  };
 
   const handleStartDateChange = (selectedDate) => {
     setStartDate(selectedDate);
@@ -29,20 +25,20 @@ export default function DestinationButtons({navigation}) {
   const handleLocationChange = (selectedLocation) => {
     setLocation(selectedLocation);
   };
-  ///////////////////////////////////////////////////////////////////
-  // const handlePriceChange = (selectedPrice) => {
-  //   setPriceRange(selectedPrice);
-  // };
 
-  //const isFormValid = startDate && endDate && location && priceRange.length > 0;
   const isFormValid = startDate && endDate && location;
 
-  const onClick = () => {
+  const navigateToDestinations = () => {
     if (isFormValid) {
-    console.log("Start Date: "+startDate);
-    console.log("End Date: "+endDate);
-    console.log(location);
-    navigation.navigate('Destinations')
+      console.log("Start Date: "+startDate);
+      console.log("End Date: "+endDate);
+      console.log(location);
+      navigation.navigate('Destinations',
+      {
+        startDate: startDate,
+        endDate: endDate,
+        loc: location,
+      });
     }
     else {
       alert('Please fill all the fields');
@@ -55,7 +51,7 @@ export default function DestinationButtons({navigation}) {
       <View style={styles.btn_col}>
         
         <View style={styles.date_btn}>
-          <DatePicker onStartDateChange={handleStartDateChange} onEndDateChange={handleEndDateChange}/>  
+          <DatePicker onStartDateChange={handleStartDateChange} onEndDateChange={handleEndDateChange}  datebox1="Start Date" datebox2="End Date"/>  
         </View>
 
         <View>
@@ -68,7 +64,7 @@ export default function DestinationButtons({navigation}) {
       </View> */}
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.exploreButton} onPress={onClick}>
+        <TouchableOpacity style={styles.exploreButton} onPress={navigateToDestinations}>
           <Text style={styles.exploreButtonText}>Explore</Text>
         </TouchableOpacity>
       </View>

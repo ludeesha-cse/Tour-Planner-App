@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
     transition: 'transform 0.5s, box-shadow 0.2s',
   },
   image: {
-    width: 300,
-    height: 200,
+    width: "100%",
+    height: 250,
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
     resizeMode: 'cover',
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
   tagContainer: {
     flexDirection: 'row',
-    backgroundColor: 'blue',
+    backgroundColor: 'transparent',
   },
   tag: {
     borderWidth: 0.5,
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: 10,
     marginLeft: 10,
-    backgroundColor:'red',
+    backgroundColor:'transparent',
   },
   mapLink: {
     color: '#0C356A',

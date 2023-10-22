@@ -1,55 +1,58 @@
 import React from 'react';
 import { View, Text, ImageBackground, StyleSheet, ScrollView, Button } from 'react-native';
 import AboutUs from '../Components/AboutUsComponent';
+import NavBarComponent from '../Components/NavBar&Footer/NavBarComponent';
 
 
 const LandingScreen = ({navigation}) => {
   return (
-    <ScrollView>
-      <ImageBackground
-        source={require('../images/portrait/landing_background_portrait.jpg')}
-        style={styles.backgroundImage}
-      >
-        <View style={styles.container}>
+    <View>
+      <NavBarComponent />
+      <ScrollView>
+        <ImageBackground
+          source={require('../images/portrait/landing_background_portrait.jpg')}
+          style={styles.backgroundImage}
+        >
+          <View style={styles.container}>
 
-          <View style={styles.welcomeNote}>
-            <Text style={styles.welcomeText}>
-              {"|NAVIGATE THE WORLD'S MARVELOUS."}
-            </Text>
-            <View style={styles.getStartedButton}>
-              <Button title="Get Started" onPress={() => navigation.navigate('DestinationFormScreen')} />
+            <View style={styles.welcomeNote}>
+              <Text style={styles.welcomeText}>
+                {"|NAVIGATE THE WORLD'S MARVELOUS."}
+              </Text>
+              <View style={styles.getStartedButton}>
+                <Button title="Get Started" onPress={() => navigation.navigate('DestinationFormScreen')} />
+              </View>
+            </View>
+            <View style={styles.abouts}>
+              <ScrollView contentContainerStyle={styles.paragraphs}>
+                <Text style={styles.paragraph}>
+                  Step into a world of possibilities where your journey begins. 
+                  We're here to make your travel dreams come true. Explore exotic destinations, 
+                  create unforgettable itineraries, and embark on adventures like never before.
+                </Text>
+                <Text style={styles.paragraph}>
+                  At JourneySync, we're dedicated to providing you with the best travel experiences. 
+                  Whether you're a solo explorer, a family of adventurers, or a couple seeking a romantic getaway, 
+                  we've got you covered.
+                </Text>
+                <Text style={styles.paragraph}>
+                  Our user-friendly platform is designed to make travel planning a breeze. 
+                  With powerful AI tools and expert recommendations, crafting your perfect trip has never been easier.
+                  Plus, we offer seamless booking services and a range of travel resources to enhance your journey.
+                </Text>
+              </ScrollView>
             </View>
           </View>
-          <View style={styles.abouts}>
-            <ScrollView contentContainerStyle={styles.paragraphs}>
-              <Text style={styles.paragraph}>
-                Step into a world of possibilities where your journey begins. 
-                We're here to make your travel dreams come true. Explore exotic destinations, 
-                create unforgettable itineraries, and embark on adventures like never before.
-              </Text>
-              <Text style={styles.paragraph}>
-                At JourneySync, we're dedicated to providing you with the best travel experiences. 
-                Whether you're a solo explorer, a family of adventurers, or a couple seeking a romantic getaway, 
-                we've got you covered.
-              </Text>
-              <Text style={styles.paragraph}>
-                Our user-friendly platform is designed to make travel planning a breeze. 
-                With powerful AI tools and expert recommendations, crafting your perfect trip has never been easier.
-                Plus, we offer seamless booking services and a range of travel resources to enhance your journey.
-              </Text>
-            </ScrollView>
+          <View>
+            <AboutUs />
           </View>
-        </View>
-        <View>
-          <AboutUs />
-        </View>
-        
-      {/* <View  id="about_us" style={styles.about_us}><AboutUs /></View> */}
-      </ImageBackground>
-    
-    </ScrollView>
+          
+        {/* <View  id="about_us" style={styles.about_us}><AboutUs /></View> */}
+        </ImageBackground>
+      
+      </ScrollView>
 
-    
+  </View>  
 
   );
 };
