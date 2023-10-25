@@ -3,7 +3,7 @@ import { View, StyleSheet, ImageBackground } from 'react-native';
 import DestinationButtons from '../Components/DestinationFormComponent';
 import NavBarComponent from '../Components/NavBar&Footer/NavBarComponent';
 
-function DestinationForm({navigation}) {
+function DestinationForm() {
 
   return (
     <ImageBackground
@@ -12,7 +12,7 @@ function DestinationForm({navigation}) {
     <NavBarComponent />
     <View style={styles.container}>
       <View style={styles.destinationButtons}>
-        <DestinationButtons navigation={navigation}/>
+        <DestinationButtons />
       </View>
     </View>
     </ImageBackground>

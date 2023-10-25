@@ -1,17 +1,108 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import DestinationCard from '../Components/CardComponent';
-const Pic = require('../images/demodara.jpg');
 import { useNavigation } from '@react-navigation/native';
 import NavBarComponent from '../Components/NavBar&Footer/NavBarComponent';
 import axios from 'axios';
+const Pic = require('../images/demodara.jpg');
 
-const Destinations = (startDate,endDate,loc) => {
-  const tags = ['Nature', 'Adventure', 'Hiking'];
+const Destinations = ({ route }) => {
+  const [destinations, setDestinations] = useState([]);
+  // const destinations = [
+  //   {
+  //     position: 1,
+  //     cid: 101,
+  //     title: 'Example Destination 1',
+  //     address: '123 Main Street',
+  //     tags: ['Tag1', 'Tag2', 'Tag3'],
+  //     thumbnailUrl: 'https://example.com/image1.jpg',
+  //     latitude: 40.7128,
+  //     longitude: -74.0060,
+  //   },
+  //   {
+  //     position: 2,
+  //     cid: 102,
+  //     title: 'Example Destination 2',
+  //     address: '456 Elm Street',
+  //     tags: ['Tag4', 'Tag5'],
+  //     thumbnailUrl: 'https://example.com/image2.jpg',
+  //     latitude: 34.0522,
+  //     longitude: -118.2437,
+  //   },
+  //   {
+  //     position: 3,
+  //     cid: 103,
+  //     title: 'Example Destination 3',
+  //     address: '789 Oak Street',
+  //     tags: ['Tag6', 'Tag7', 'Tag8'],
+  //     thumbnailUrl: 'https://example.com/image3.jpg',
+  //     latitude: 51.5074,
+  //     longitude: -0.1278,
+  //   },
+  //   {
+  //     position: 4,
+  //     cid: 104,
+  //     title: 'Example Destination 4',
+  //     address: '789 Oak Street',
+  //     tags: ['Tag6', 'Tag7', 'Tag8'],
+  //     thumbnailUrl: 'https://example.com/image3.jpg',
+  //     latitude: 51.5074,
+  //     longitude: -0.1278,
+  //   },
+  //   {
+  //     position: 5,
+  //     cid: 105,
+  //     title: 'Example Destination 5',
+  //     address: '789 Oak Street',
+  //     tags: ['Tag6', 'Tag7', 'Tag8'],
+  //     thumbnailUrl: 'https://example.com/image5.jpg',
+  //     latitude: 51.5074,
+  //     longitude: -0.1278,
+  //   },
+  //   // Add more destinations as needed
+  // ];
   const navigation = useNavigation();
+  const {loc} = route.params;
+  const tags = ['Nature', 'Adventure', 'Hiking'];
+
+  useEffect(() => {
+    const fetchDestinations = async() => {
+      const headers = {
+        'X-API-KEY': '10859bbd384ce9d3ebb3c2663dddef1c7adef465',
+        'Content-Type': 'application/json',
+      };
+    
+      const data = {
+        q: 'places to visit in '+ loc,
+        gl: 'lk',
+      };
+    
+      try {
+        const response = await axios.post('https://google.serper.dev/places', data, {
+          headers,
+        });
+
+        if(response.data){
+          setDestinations(response.data.places);
+          console.log("Destinations : =================>>>>>>>>>>>>>"+destinations);
+          console.log(" Response.data :========>>>>>>>>>>>"+response.data);
+        }
+        else{
+          console.log("No data");
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+    
+    fetchDestinations();  
+  },[]);
+  
 
   const handleClick = (key) => {
     // Handle click action
+    console.log("object");
   };
 
   const navigateToAccomodationForm = () => {
@@ -22,32 +113,33 @@ const Destinations = (startDate,endDate,loc) => {
     });
   };
 
-  //const destinationResults = await getGeoLocation("Tangalle");
-
-  const cardComponents = [
-    <DestinationCard key={1} id={1} title="Nine Arches Tunnels" location="Demodara" tags={tags} tagLabel="Location tags" image={Pic} onClick={handleClick} />,
-    <DestinationCard key={2} id={2} title="Nine Arches Tunnels" location="Demodara" tags={tags} tagLabel="Location tags" image={Pic} onClick={handleClick} />,
-    <DestinationCard key={3} id={3} title="Nine Arches Tunnels" location="Demodara" tags={tags} tagLabel="Location tags" image={Pic} onClick={handleClick} />,
-    <DestinationCard key={4} id={4} title="Nine Arches Tunnels" location="Dodara" tags={tags} tagLabel="Location tags" image={Pic} onClick={handleClick} />,
-    <DestinationCard key={5} id={5} title="Nine Arches Tunnels" location="Dodara" tags={tags} tagLabel="Location tags" image={Pic} onClick={handleClick} />,
-    <DestinationCard key={6} id={6} title="Nine Arches Tunnels" location="Dodara" tags={tags} tagLabel="Location tags" image={Pic} onClick={handleClick} />,
-  ];
-
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <NavBarComponent />
       <View style={styles.dst}>
         <View style={styles.dstContainer}>
-          <Text style={styles.dstHeading}>Recommended places to visit in Kandy</Text>
+          <Text style={styles.dstHeading}>Recommended places to visit in {loc}</Text>
           <View style={styles.dstBtn}>
             <TouchableOpacity style={styles.button}>
               <Text>Change Trip Data</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.dstCards}>
-            {cardComponents.map((card) => (
-              <View key={card.key}>{card}</View>
-            ))}
+            {destinations.length > 0 ? (
+              <FlatList
+                data={destinations}
+                numColumns={2} // Display two columns per row
+                keyExtractor={(destination) => destination.position.toString()}
+                renderItem={({ item }) => (
+                  <View style={styles.card}>
+                    <DestinationCard key={item.position} id={item.cid} title={item.title} location={item.address} tags={tags} tagLabel="Location tags" image={item.thumbnailUrl} onClick={handleClick} lat={item.latitude} lng={item.longitude}/>
+                  </View>
+              
+                )}
+              />
+            ) : (
+              <Text>Loading...</Text>
+            )}
           </View>
           <View style={styles.dstBtn}>
             <TouchableOpacity style={styles.button} onPress={navigateToAccomodationForm}>
@@ -56,14 +148,17 @@ const Destinations = (startDate,endDate,loc) => {
           </View>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
+  
 };
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
+    height: 500,
   },
   dst: {
     flex: 1,
@@ -81,6 +176,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     marginBottom: 5,
+  },
+  card: {
+    flex: 1,
+    margin: 5,
+  }, 
+  
+  dstContainer: {
+    height: '80%',
   },
   dstBtn: {
     width: '100%',

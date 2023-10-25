@@ -3,7 +3,7 @@ import { View, StyleSheet, ImageBackground } from 'react-native';
 import AccommodationButtons from '../Components/AccomodationFormComponent';
 import NavBarComponent from '../Components/NavBar&Footer/NavBarComponent';
 
-function AccommodationForm(startDate,endDate,loc) {
+function AccommodationForm(loc) {
 
   return (
     <ImageBackground
@@ -12,7 +12,7 @@ function AccommodationForm(startDate,endDate,loc) {
     <NavBarComponent />
     <View style={styles.container}>
       <View style={styles.destinationButtons}>
-        <AccommodationButtons startDate={startDate} endDate={endDate} loc={loc}/> 
+        <AccommodationButtons loc={loc}/> 
       </View>
     </View>
     </ImageBackground>

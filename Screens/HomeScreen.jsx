@@ -2,9 +2,10 @@ import React from 'react';
 import { View, Text, ImageBackground, StyleSheet, ScrollView, Button } from 'react-native';
 import AboutUs from '../Components/AboutUsComponent';
 import NavBarComponent from '../Components/NavBar&Footer/NavBarComponent';
+import { useNavigation } from '@react-navigation/native';
 
-
-const LandingScreen = ({navigation}) => {
+const LandingScreen = () => {
+  const navigation = useNavigation();
   return (
     <View>
       <NavBarComponent />
