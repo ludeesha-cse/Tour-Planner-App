@@ -9,59 +9,6 @@ const Pic = require('../images/demodara.jpg');
 
 const Destinations = ({ route }) => {
   const [destinations, setDestinations] = useState([]);
-  // const destinations = [
-  //   {
-  //     position: 1,
-  //     cid: 101,
-  //     title: 'Example Destination 1',
-  //     address: '123 Main Street',
-  //     tags: ['Tag1', 'Tag2', 'Tag3'],
-  //     thumbnailUrl: 'https://example.com/image1.jpg',
-  //     latitude: 40.7128,
-  //     longitude: -74.0060,
-  //   },
-  //   {
-  //     position: 2,
-  //     cid: 102,
-  //     title: 'Example Destination 2',
-  //     address: '456 Elm Street',
-  //     tags: ['Tag4', 'Tag5'],
-  //     thumbnailUrl: 'https://example.com/image2.jpg',
-  //     latitude: 34.0522,
-  //     longitude: -118.2437,
-  //   },
-  //   {
-  //     position: 3,
-  //     cid: 103,
-  //     title: 'Example Destination 3',
-  //     address: '789 Oak Street',
-  //     tags: ['Tag6', 'Tag7', 'Tag8'],
-  //     thumbnailUrl: 'https://example.com/image3.jpg',
-  //     latitude: 51.5074,
-  //     longitude: -0.1278,
-  //   },
-  //   {
-  //     position: 4,
-  //     cid: 104,
-  //     title: 'Example Destination 4',
-  //     address: '789 Oak Street',
-  //     tags: ['Tag6', 'Tag7', 'Tag8'],
-  //     thumbnailUrl: 'https://example.com/image3.jpg',
-  //     latitude: 51.5074,
-  //     longitude: -0.1278,
-  //   },
-  //   {
-  //     position: 5,
-  //     cid: 105,
-  //     title: 'Example Destination 5',
-  //     address: '789 Oak Street',
-  //     tags: ['Tag6', 'Tag7', 'Tag8'],
-  //     thumbnailUrl: 'https://example.com/image5.jpg',
-  //     latitude: 51.5074,
-  //     longitude: -0.1278,
-  //   },
-  //   // Add more destinations as needed
-  // ];
   const navigation = useNavigation();
   const {loc} = route.params;
   const tags = ['Nature', 'Adventure', 'Hiking'];
@@ -69,7 +16,7 @@ const Destinations = ({ route }) => {
   useEffect(() => {
     const fetchDestinations = async() => {
       const headers = {
-        'X-API-KEY': '10859bbd384ce9d3ebb3c2663dddef1c7adef465',
+        'X-API-KEY': 'API_KEY',
         'Content-Type': 'application/json',
       };
     
@@ -85,8 +32,6 @@ const Destinations = ({ route }) => {
 
         if(response.data){
           setDestinations(response.data.places);
-          console.log("Destinations : =================>>>>>>>>>>>>>"+destinations);
-          console.log(" Response.data :========>>>>>>>>>>>"+response.data);
         }
         else{
           console.log("No data");
@@ -95,7 +40,6 @@ const Destinations = ({ route }) => {
         console.error('Error:', error);
       }
     }
-    
     fetchDestinations();  
   },[]);
   
