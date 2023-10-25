@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 
-export default function App({navigation}) {
+export default function App() {
   return (
     <SafeAreaView style={{flex: 1}}>  
       <NavigationContainer>

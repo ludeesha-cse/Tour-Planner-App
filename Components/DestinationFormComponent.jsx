@@ -26,7 +26,8 @@ export default function DestinationButtons() {
     setLocation(selectedLocation);
   };
 
-  const isFormValid = startDate && endDate && location;
+  // const isFormValid = startDate && endDate && location;
+  const isFormValid = location;
 
   const navigateToDestinations = () => {
     if (isFormValid) {
@@ -35,8 +36,6 @@ export default function DestinationButtons() {
       console.log(location);
       navigation.navigate('Destinations',
       {
-        startDate: startDate,
-        endDate: endDate,
         loc: location,
       });
     }

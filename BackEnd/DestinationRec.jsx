@@ -18,3 +18,5 @@ export const DestinationRec = async(loc) => {
         console.log(error);
     });
 }
+
+export default DestinationRec;
