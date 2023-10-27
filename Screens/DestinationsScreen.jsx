@@ -1,67 +1,13 @@
 
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native';
-import DestinationCard from '../Components/CardComponent';
+import DestinationCard from '../Components/DestinationCardComponent';
 import { useNavigation } from '@react-navigation/native';
 import NavBarComponent from '../Components/NavBar&Footer/NavBarComponent';
 import axios from 'axios';
-const Pic = require('../images/demodara.jpg');
 
 const Destinations = ({ route }) => {
   const [destinations, setDestinations] = useState([]);
-  // const destinations = [
-  //   {
-  //     position: 1,
-  //     cid: 101,
-  //     title: 'Example Destination 1',
-  //     address: '123 Main Street',
-  //     tags: ['Tag1', 'Tag2', 'Tag3'],
-  //     thumbnailUrl: 'https://example.com/image1.jpg',
-  //     latitude: 40.7128,
-  //     longitude: -74.0060,
-  //   },
-  //   {
-  //     position: 2,
-  //     cid: 102,
-  //     title: 'Example Destination 2',
-  //     address: '456 Elm Street',
-  //     tags: ['Tag4', 'Tag5'],
-  //     thumbnailUrl: 'https://example.com/image2.jpg',
-  //     latitude: 34.0522,
-  //     longitude: -118.2437,
-  //   },
-  //   {
-  //     position: 3,
-  //     cid: 103,
-  //     title: 'Example Destination 3',
-  //     address: '789 Oak Street',
-  //     tags: ['Tag6', 'Tag7', 'Tag8'],
-  //     thumbnailUrl: 'https://example.com/image3.jpg',
-  //     latitude: 51.5074,
-  //     longitude: -0.1278,
-  //   },
-  //   {
-  //     position: 4,
-  //     cid: 104,
-  //     title: 'Example Destination 4',
-  //     address: '789 Oak Street',
-  //     tags: ['Tag6', 'Tag7', 'Tag8'],
-  //     thumbnailUrl: 'https://example.com/image3.jpg',
-  //     latitude: 51.5074,
-  //     longitude: -0.1278,
-  //   },
-  //   {
-  //     position: 5,
-  //     cid: 105,
-  //     title: 'Example Destination 5',
-  //     address: '789 Oak Street',
-  //     tags: ['Tag6', 'Tag7', 'Tag8'],
-  //     thumbnailUrl: 'https://example.com/image5.jpg',
-  //     latitude: 51.5074,
-  //     longitude: -0.1278,
-  //   },
-  //   // Add more destinations as needed
-  // ];
   const navigation = useNavigation();
   const {loc} = route.params;
   const tags = ['Nature', 'Adventure', 'Hiking'];
@@ -85,6 +31,7 @@ const Destinations = ({ route }) => {
 
         if(response.data){
           setDestinations(response.data.places);
+          console.log(response.data.places);
           console.log("Destinations : =================>>>>>>>>>>>>>"+destinations);
           console.log(" Response.data :========>>>>>>>>>>>"+response.data);
         }
@@ -99,6 +46,14 @@ const Destinations = ({ route }) => {
     fetchDestinations();  
   },[]);
   
+  function replaceThumbnailUrl(originalUrl) {
+    // Use the replace method to replace "w92-h92" with the replacement string
+    const updatedUrl = originalUrl.replace("w92-h92","w500-h500");
+    return updatedUrl;
+  }
+  
+  // const thumbnailUrl = destinations[0].thumbnailUrl;
+  // const newThumbnailUrl = replaceThumbnailUrl(thumbnailUrl, "new-string");
 
   const handleClick = (key) => {
     // Handle click action
@@ -107,8 +62,6 @@ const Destinations = ({ route }) => {
 
   const navigateToAccomodationForm = () => {
     navigation.navigate('AccommodationForm',{
-      startDate: startDate,
-      endDate: endDate,
       loc: loc,
     });
   };
@@ -121,7 +74,7 @@ const Destinations = ({ route }) => {
           <Text style={styles.dstHeading}>Recommended places to visit in {loc}</Text>
           <View style={styles.dstBtn}>
             <TouchableOpacity style={styles.button}>
-              <Text>Change Trip Data</Text>
+              <Text style={{color:"white"}}>Change Trip Data</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.dstCards}>
@@ -129,10 +82,10 @@ const Destinations = ({ route }) => {
               <FlatList
                 data={destinations}
                 numColumns={2} // Display two columns per row
-                keyExtractor={(destination) => destination.position.toString()}
+                //keyExtractor={(destination) => destination.position.toString()}
                 renderItem={({ item }) => (
                   <View style={styles.card}>
-                    <DestinationCard key={item.position} id={item.cid} title={item.title} location={item.address} tags={tags} tagLabel="Location tags" image={item.thumbnailUrl} onClick={handleClick} lat={item.latitude} lng={item.longitude}/>
+                    <DestinationCard key={item.position} id={item.cid} title={item.title} location={item.address} tags={tags} tagLabel="Location tags" image={replaceThumbnailUrl(item.thumbnailUrl)} onClick={handleClick} lat={item.latitude} lng={item.longitude}/>
                   </View>
               
                 )}
@@ -143,7 +96,7 @@ const Destinations = ({ route }) => {
           </View>
           <View style={styles.dstBtn}>
             <TouchableOpacity style={styles.button} onPress={navigateToAccomodationForm}>
-              <Text>Next Step</Text>
+              <Text  style={{color:"white"}}>Next Step</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -199,7 +152,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#0C356A',
     borderWidth: 1,
     borderRadius: 20,
-    color: 'white',
     fontSize: 16,
     textTransform: 'capitalize',
     padding: '6px 18px 6px 18px',
