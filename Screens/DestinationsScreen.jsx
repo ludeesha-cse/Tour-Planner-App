@@ -15,7 +15,7 @@ const Destinations = ({ route }) => {
   useEffect(() => {
     const fetchDestinations = async() => {
       const headers = {
-        'X-API-KEY': '10859bbd384ce9d3ebb3c2663dddef1c7adef465',
+        'X-API-KEY': 'API KEY',
         'Content-Type': 'application/json',
       };
     
