@@ -31,9 +31,6 @@ const Destinations = ({ route }) => {
 
         if(response.data){
           setDestinations(response.data.places);
-          console.log(response.data.places);
-          console.log("Destinations : =================>>>>>>>>>>>>>"+destinations);
-          console.log(" Response.data :========>>>>>>>>>>>"+response.data);
         }
         else{
           console.log("No data");
@@ -42,7 +39,6 @@ const Destinations = ({ route }) => {
         console.error('Error:', error);
       }
     }
-    
     fetchDestinations();  
   },[]);
   
