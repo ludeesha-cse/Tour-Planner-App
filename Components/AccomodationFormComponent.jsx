@@ -32,14 +32,11 @@ export default function AccommodationButtons(props) {
   };
 
   //const isFormValid = checkInDate && checkOutDate && location && priceRange.length > 0;
-  const isFormValid = checkInDate && checkOutDate;
+  const isFormValid = checkOutDate;
 
   const onClick = () => {
     if (isFormValid) {
-      console.log("Start Date: "+checkInDate);
-      console.log("End Date: "+checkOutDate);
-      navigation.navigate('Destinations',{
-        cin: checkInDate,
+      navigation.navigate('HotelRecom',{
         cout: checkOutDate,
         loc: props.loc,
       })

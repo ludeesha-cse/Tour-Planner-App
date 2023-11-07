@@ -1,9 +1,13 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, Linking, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Linking, StyleSheet , Dimensions, PixelRatio } from 'react-native';
 
+const getResponsiveFontSize = (baseFontSize, widthScale = 0.0025, heightScale = 0.0025) => {
+  const { width, height } = Dimensions.get('window');
+  const smallerDimension = Math.min(width, height);
+  return PixelRatio.getFontScale() * smallerDimension * widthScale + baseFontSize * heightScale;
+};
 
-
-const DestinationCard = ({ id, title, location, image, tags, tagLabel, onClick ,lat,lng }) => {
+const HotelCard = ({ id, title, location, image, tags, tagLabel, onClick ,lat,lng }) => {
   function locationOpen(){
     console.log(location);
     Linking.openURL('https://maps.google.com/?q='+lat+','+lng);
@@ -59,7 +63,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     transform: [{ translateY: 10 }],
     transition: 'transform 0.5s, box-shadow 0.2s',
-    height: 250,
+    height: 270,
   },
   image: {
     width: "100%",
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   title: {
-    fontSize: 14,
+    fontSize: getResponsiveFontSize(6000),
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -143,4 +147,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DestinationCard;
+export default HotelCard;

@@ -17,8 +17,8 @@ export default function App() {
       <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen name="Home" component={MainStackNavigator} options={{headerShown:false}} />
-          <Tab.Screen name="About" component={HomeScreen} options={{headerShown:false}} />
-          <Tab.Screen name="Profile" component={ProfileScreen} options={{headerShown:false}} />
+          {/* <Tab.Screen name="About" component={HomeScreen} options={{headerShown:false}} />
+          <Tab.Screen name="Profile" component={ProfileScreen} options={{headerShown:false}} /> */}
         </Tab.Navigator>
         
         {/* <MainStackNavigator/> */}

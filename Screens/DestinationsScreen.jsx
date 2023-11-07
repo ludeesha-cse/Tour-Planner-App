@@ -1,11 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native';
-import DestinationCard from '../Components/CardComponent';
+import DestinationCard from '../Components/DestinationCardComponent';
 import { useNavigation } from '@react-navigation/native';
 import NavBarComponent from '../Components/NavBar&Footer/NavBarComponent';
 import axios from 'axios';
-const Pic = require('../images/demodara.jpg');
 
 const Destinations = ({ route }) => {
   const [destinations, setDestinations] = useState([]);
@@ -16,7 +15,7 @@ const Destinations = ({ route }) => {
   useEffect(() => {
     const fetchDestinations = async() => {
       const headers = {
-        'X-API-KEY': 'API_KEY',
+        'X-API-KEY': 'API KEY',
         'Content-Type': 'application/json',
       };
     
@@ -43,6 +42,14 @@ const Destinations = ({ route }) => {
     fetchDestinations();  
   },[]);
   
+  function replaceThumbnailUrl(originalUrl) {
+    // Use the replace method to replace "w92-h92" with the replacement string
+    const updatedUrl = originalUrl.replace("w92-h92","w500-h500");
+    return updatedUrl;
+  }
+  
+  // const thumbnailUrl = destinations[0].thumbnailUrl;
+  // const newThumbnailUrl = replaceThumbnailUrl(thumbnailUrl, "new-string");
 
   const handleClick = (key) => {
     // Handle click action
@@ -51,8 +58,6 @@ const Destinations = ({ route }) => {
 
   const navigateToAccomodationForm = () => {
     navigation.navigate('AccommodationForm',{
-      startDate: startDate,
-      endDate: endDate,
       loc: loc,
     });
   };
@@ -65,7 +70,7 @@ const Destinations = ({ route }) => {
           <Text style={styles.dstHeading}>Recommended places to visit in {loc}</Text>
           <View style={styles.dstBtn}>
             <TouchableOpacity style={styles.button}>
-              <Text>Change Trip Data</Text>
+              <Text style={{color:"white"}}>Change Trip Data</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.dstCards}>
@@ -73,10 +78,10 @@ const Destinations = ({ route }) => {
               <FlatList
                 data={destinations}
                 numColumns={2} // Display two columns per row
-                keyExtractor={(destination) => destination.position.toString()}
+                //keyExtractor={(destination) => destination.position.toString()}
                 renderItem={({ item }) => (
                   <View style={styles.card}>
-                    <DestinationCard key={item.position} id={item.cid} title={item.title} location={item.address} tags={tags} tagLabel="Location tags" image={item.thumbnailUrl} onClick={handleClick} lat={item.latitude} lng={item.longitude}/>
+                    <DestinationCard key={item.position} id={item.cid} title={item.title} location={item.address} tags={tags} tagLabel="Location tags" image={replaceThumbnailUrl(item.thumbnailUrl)} onClick={handleClick} lat={item.latitude} lng={item.longitude}/>
                   </View>
               
                 )}
@@ -87,7 +92,7 @@ const Destinations = ({ route }) => {
           </View>
           <View style={styles.dstBtn}>
             <TouchableOpacity style={styles.button} onPress={navigateToAccomodationForm}>
-              <Text>Next Step</Text>
+              <Text  style={{color:"white"}}>Next Step</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -143,7 +148,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#0C356A',
     borderWidth: 1,
     borderRadius: 20,
-    color: 'white',
     fontSize: 16,
     textTransform: 'capitalize',
     padding: '6px 18px 6px 18px',
